@@ -26,7 +26,11 @@ function clickOnThePicture(event) {
     
     const instance = basicLightbox.create(`
 	<img src="${event.target.dataset.source}">
-    `);
+    `, {
+        onClose: () => {
+            document.removeEventListener('keydown', closeFullSizeImage);
+        }
+    });
     instance.show();
 
     document.addEventListener('keydown', closeFullSizeImage)
